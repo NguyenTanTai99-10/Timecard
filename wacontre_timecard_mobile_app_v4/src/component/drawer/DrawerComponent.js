@@ -7,17 +7,18 @@ import {
   Pressable,
   Image,
   Alert,
+  ImageBackground,
 } from 'react-native';
 
 import Images from '../../res/image';
-import {colors, fonts} from '../../res/style/theme';
+import {colors, fonts ,screenWidth,screenHeight} from '../../res/style/theme';
 import HeaderCustom from '../custom/HeaderCustom';
 
 import Header from '../custom/Header';
 
 const listMenu = [
   {title: 'Thông tin cá nhân', icon: Images.ic_user, screen: 'InfoPerson'},
-  {title: 'Đổi mật khẩu', icon: Images.ic_lock1, screen: ''},
+  {title: 'Đổi mật khẩu', icon: Images.ic_lock1, screen: 'ChangePasswordContainer'},
   {title: 'Thông tin chi tiết', icon: Images.ic_info, screen: ''},
   {title: 'Hướng dẫn sử dụng', icon: Images.ic_guide, screen: ''},
   {title: 'Cài đặt', icon: Images.ic_setting, screen: ''},
@@ -30,8 +31,8 @@ export default class DrawerComponent extends Component {
       data: [],
     };
   }
-  componentDidMount(){
-     this.setState({data:this.props.data})
+  componentDidMount() {
+    this.setState({data: this.props.data});
   }
   renderMenu = ({item, index}) => (
     <Pressable
@@ -40,7 +41,7 @@ export default class DrawerComponent extends Component {
         if (item.screen === '') {
           Alert.alert('Thông báo', 'Chức năng đang được cập nhật');
         } else {
-          this.props.navigation.navigate(item.screen ,{data:this.state.data});
+          this.props.navigation.navigate(item.screen, {data: this.state.data});
         }
       }}>
       <View style={styles.itemMenu}>
@@ -50,28 +51,32 @@ export default class DrawerComponent extends Component {
     </Pressable>
   );
   render() {
-     console.log('=====',this.state.data);
-     const {data} = this.state
+    console.log('=====', this.state.data);
+    const {data} = this.state;
     return (
       <View style={{flex: 1}}>
-      <Header title = {`Xin chào ${data.name}`} />
+        <Header title={`Xin chào ${data.name}`} />
         {/* <Header title='Hello Friend'
             // {`Xin chào ${userData.fullname}`} 
             /> */}
-        <FlatList
-          data={listMenu}
-          keyExtractor={(item, index) => String(index)}
-          renderItem={this.renderMenu}
-          ListFooterComponent={
-            <Pressable
-              android_ripple={{color: colors.black_transparent}}
-              style={styles.itemMenu}
-              onPress={() => this.props.navigation.replace('Login')}>
-              <Image style={styles.icon} source={Images.ic_exit} />
-              <Text style={styles.txtMenu}>Đăng xuất</Text>
-            </Pressable>
-          }
-        />
+        <ImageBackground
+          source={Images.ic_bg_timecard}
+          style={{ height: screenHeight}}>
+          <FlatList
+            data={listMenu}
+            keyExtractor={(item, index) => String(index)}
+            renderItem={this.renderMenu}
+            ListFooterComponent={
+              <Pressable
+                android_ripple={{color: colors.black_transparent}}
+                style={styles.itemMenu}
+                onPress={() => this.props.navigation.replace('Login')}>
+                <Image style={styles.icon} source={Images.ic_exit} />
+                <Text style={styles.txtMenu}>Đăng xuất</Text>
+              </Pressable>
+            }
+          />
+        </ImageBackground>
       </View>
     );
   }

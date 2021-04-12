@@ -55,7 +55,7 @@ export default class Home extends Component {
     return `${h} : ${m}: ${s} `;
   };
   Notifi = data => {
-    console.log('title==', data.Title);
+    // console.log('title==', data.Title);
     const option = {
       soundName: 'default',
       playSound: true,
@@ -194,7 +194,11 @@ export default class Home extends Component {
               //   marginVertical: 15,
               marginHorizontal: 15,
             }}>
-            <TouchableOpacity>
+            <TouchableOpacity
+            onPress={()=>{
+              this.props.navigation.navigate('RequireLateContainer')
+            }}
+            >
               <ImageBackground
                 source={Images.bg_bt_request_late}
                 style={{

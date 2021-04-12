@@ -17,11 +17,19 @@ import  DetailContainer from './src/container/home/DetailContainer';
 
 
 
+
 ////////////////////////////////////////////////////////////
 
 import  DrawerComponent from './src/component/drawer/DrawerComponent';
 import  DrawerConatiner  from './src/container/DrawerContainer/DrawerConatiner';
 import InfoPerson from './src/component/InfoPerson';
+import RequireLateContainer from './src/container/RequireLate/RequireLateContainer';
+import FogetPasswordConatiner from './src/container/FogetPasswordConatiner/FogetPasswordConatiner';
+import ChangePasswordContainer from './src/container/ChangePasswordContainer/ChangePasswordContainer';
+import AttendanceContainer from './src/container/AttendanceContainer/AttendanceContainer';
+
+
+
 
 
 //bottom-tab
@@ -44,8 +52,8 @@ const bottomTab = () => {
             }}
          />
          <Tab.Screen
-            name="Detail"
-            component={DetailContainer}
+            name="AttendanceContainer"
+            component={AttendanceContainer}
             options={{
                tabBarLabel: 'Thống kê',
                tabBarIcon: ({ color }) => <Icon name="chart-bar" color={color} size={26} />,
@@ -77,7 +85,15 @@ const App = () => {
             <Stack.Screen name="Login" component={LoginContainer} />
             <Stack.Screen name="Drawers" component={Drawers} />
             <Stack.Screen name="InfoPerson" component={InfoPerson} />
+            <Stack.Screen name="RequireLateContainer" component={RequireLateContainer} />
+            <Stack.Screen name="FogetPasswordConatiner" component={FogetPasswordConatiner} />
+            <Stack.Screen name="ChangePasswordContainer" component={ChangePasswordContainer} />
+            <Stack.Screen name="AttendanceContainer" component={AttendanceContainer} />
+            {/* AttendanceContainer */}
+            {/* ChangePasswordContainer */}
+            {/* FogetPasswordConatiner */}
             {/* InfoPerson */}
+            {/* RequireLateContainer */}
             
             
             

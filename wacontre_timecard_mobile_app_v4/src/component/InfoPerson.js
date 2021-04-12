@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {FlatList, Image, StyleSheet, Text, View} from 'react-native';
+import {FlatList, Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
 import {Avatar} from 'react-native-elements';
 
 import Images from '../res/image';
-import {colors, fonts, screenWidth} from '../res/style/theme';
+import {colors, fonts, screenWidth,screenHeight} from '../res/style/theme';
 import Header from './custom/Header';
 
 export default class UserInfo extends Component {
@@ -47,35 +47,37 @@ export default class UserInfo extends Component {
           onPressBack={() => this.props.navigation.goBack()}
           title="Thông tin cá nhân"
         />
-        <Image  style={styles.img} 
-        source={{
-            uri:
-              `${this.state.avt}`,
-          }}/>
-       
+        <ImageBackground
+          source={Images.ic_bg_timecard}
+          style={{width: screenWidth, height: screenHeight}}>
+          <Image
+            style={styles.img}
+            source={{
+              uri: `${this.state.avt}`,
+            }}
+          />
 
-    
-        
-        <View style={styles.item}>
-          <Text style={styles.text}>Họ và tên</Text>
-          <Text style={styles.text}>{this.state.name}</Text>
-        </View>
-        <View style={styles.item}>
-          <Text style={styles.text}>Ngày Sinh</Text>
-          <Text style={styles.text}>{this.state.birthDay}</Text>
-        </View>
-        <View style={styles.item}>
-          <Text style={styles.text}>Email</Text>
-          <Text style={styles.text}>{this.state.email}</Text>
-        </View>
-        <View style={styles.item}>
-          <Text style={styles.text}>Số điện thoại</Text>
-          <Text style={styles.text}>{this.state.phone}</Text>
-        </View>
-        <View style={styles.item}>
-          <Text style={styles.text}>Chức danh</Text>
-          <Text style={styles.text}>{this.state.position}</Text>
-        </View>
+          <View style={[styles.item, {marginTop: 10}]}>
+            <Text style={styles.text}>Họ và tên</Text>
+            <Text style={styles.text}>{this.state.name}</Text>
+          </View>
+          <View style={styles.item}>
+            <Text style={styles.text}>Ngày Sinh</Text>
+            <Text style={styles.text}>{this.state.birthDay}</Text>
+          </View>
+          <View style={styles.item}>
+            <Text style={styles.text}>Email</Text>
+            <Text style={styles.text}>{this.state.email}</Text>
+          </View>
+          <View style={styles.item}>
+            <Text style={styles.text}>Số điện thoại</Text>
+            <Text style={styles.text}>{this.state.phone}</Text>
+          </View>
+          <View style={styles.item}>
+            <Text style={styles.text}>Chức danh</Text>
+            <Text style={styles.text}>{this.state.position}</Text>
+          </View>
+        </ImageBackground>
       </View>
     );
   }
@@ -99,11 +101,8 @@ const styles = StyleSheet.create({
   img: {
     width: screenWidth * 0.5,
     height: screenWidth * 0.5,
-    alignSelf: 'center', 
-    borderRadius:100,
-    top : 10
-    
-  
-    
+    alignSelf: 'center',
+    borderRadius: 100,
+    top: 10,
   },
 });
