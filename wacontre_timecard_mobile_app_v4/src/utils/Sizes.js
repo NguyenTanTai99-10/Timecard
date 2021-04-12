@@ -36,6 +36,7 @@ const basicSize = {
   s80: 80,
   s90: 90,
   s100: 100,
+  s110: 110,
   s120: 120,
   s140: 140,
   s160: 160,
@@ -53,7 +54,7 @@ const basicSize = {
   s420: 420,
   s440: 440,
   s570: 570,
-  s70: 70,
+ 
   h3: 3,
   h10: 10,
   h12: 12,
@@ -129,6 +130,8 @@ const Sizes = {
   s80: scale(basicSize.s80),
   s90: scale(basicSize.s90),
   s100: scale(basicSize.s100),
+  s110: scale(basicSize.s110),
+  // s110
   s120: scale(basicSize.s120),
   s140: scale(basicSize.s140),
   s160: scale(basicSize.s160),

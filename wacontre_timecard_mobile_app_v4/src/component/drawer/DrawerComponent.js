@@ -1,93 +1,110 @@
-// import React, { Component } from 'react';
-// import { View, Text, StyleSheet, FlatList, Pressable, Image, Alert } from 'react-native';
-// import { userData } from '../img/../img/config/Config';
-// import Images from '../img/../img/res/image';
-// import { colors, fonts } from '../img/../img/res/style/theme';
-// import Header from '../img/custom/Header';
+import React, {Component} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  Pressable,
+  Image,
+  Alert,
+} from 'react-native';
 
+import Images from '../../res/image';
+import {colors, fonts} from '../../res/style/theme';
+import HeaderCustom from '../custom/HeaderCustom';
 
-// const listMenu = [
-//    { title: 'Thông tin cá nhân', icon: Images.ic_user_info, screen: 'UserInfo' },
-//    { title: 'Đổi mật khẩu', icon: Images.ic_lock, screen: 'Tetschoi' },
-//    { title: 'Xuất file Excel', icon: Images.ic_excel, screen: 'TestLogin' },
-//    { title: 'Thông tin chi tiết', icon: Images.ic_info, screen: '' },
-//    { title: 'Hướng dẫn sử dụng', icon: Images.ic_guide, screen: '' },
-//    { title: 'Cài đặt', icon: Images.ic_setting, screen: '' },
-// ];
+import Header from '../custom/Header';
 
-// export default class DrawerComponent extends Component {
-//    constructor(props) {
-//       super(props);
-//       this.state = {};
-//    }
-//    renderMenu = ({ item, index }) => (
-//       <Pressable
-//          android_ripple={{ color: colors.black_transparent }}
-//          onPress={() => {
-//             if (item.screen === '') {
-//                Alert.alert('Thông báo', 'Chức năng đang được cập nhật');
-//             } else {
-//                this.props.navigation.navigate(item.screen);
-//             }
-//          }}>
-//          <View style={styles.itemMenu}>
-//             <Image style={styles.icon} source={item.icon} />
-//             <Text style={styles.txtMenu}>{item.title}</Text>
-//          </View>
-//       </Pressable>
-//    );
-//    render() {
-//       return (
-//          <View style={{ flex: 1 }}>
-//             <Header title={`Xin chào ${userData.fullname}`} />
-//             <FlatList
-//                data={listMenu}
-//                keyExtractor={(item, index) => String(index)}
-//                renderItem={this.renderMenu}
-//                ListFooterComponent={
-//                   <Pressable
-//                      android_ripple={{ color: colors.black_transparent }}
-//                      style={styles.itemMenu}
-//                      onPress={() => this.props.navigation.replace('Login')}>
-//                      <Image style={styles.icon} source={Images.ic_exit} />
-//                      <Text style={styles.txtMenu}>Đăng xuất</Text>
-//                   </Pressable>
-//                }
-//             />
-//          </View>
-//       );
-//    }
-// }
-// const styles = StyleSheet.create({
-//    itemMenu: {
-//       flexDirection: 'row',
-//       alignItems: 'center',
-//       paddingVertical: 8,
-//       borderColor: colors.gray2,
-//       borderBottomWidth: 1,
-//       paddingHorizontal: 16,
-//    },
-//    txtMenu: {
-//       fontSize: 16,
-//       marginLeft: 16,
-//       fontFamily: fonts.medium,
-//    },
-//    icon: {
-//       width: 50,
-//       height: 50,
-//       resizeMode: 'contain',
-//    },
-// });
-import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+const listMenu = [
+  {title: 'Thông tin cá nhân', icon: Images.ic_user, screen: 'InfoPerson'},
+  {title: 'Đổi mật khẩu', icon: Images.ic_lock1, screen: ''},
+  {title: 'Thông tin chi tiết', icon: Images.ic_info, screen: ''},
+  {title: 'Hướng dẫn sử dụng', icon: Images.ic_guide, screen: ''},
+  {title: 'Cài đặt', icon: Images.ic_setting, screen: ''},
+];
 
 export default class DrawerComponent extends Component {
-   render() {
-      return (
-         <View>
-            <Text> textInComponent </Text>
-         </View>
-      )
-   }
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+    };
+  }
+  componentDidMount(){
+     this.setState({data:this.props.data})
+  }
+  renderMenu = ({item, index}) => (
+    <Pressable
+      android_ripple={{color: colors.black_transparent}}
+      onPress={() => {
+        if (item.screen === '') {
+          Alert.alert('Thông báo', 'Chức năng đang được cập nhật');
+        } else {
+          this.props.navigation.navigate(item.screen ,{data:this.state.data});
+        }
+      }}>
+      <View style={styles.itemMenu}>
+        <Image style={styles.icon} source={item.icon} />
+        <Text style={styles.txtMenu}>{item.title}</Text>
+      </View>
+    </Pressable>
+  );
+  render() {
+     console.log('=====',this.state.data);
+     const {data} = this.state
+    return (
+      <View style={{flex: 1}}>
+      <Header title = {`Xin chào ${data.name}`} />
+        {/* <Header title='Hello Friend'
+            // {`Xin chào ${userData.fullname}`} 
+            /> */}
+        <FlatList
+          data={listMenu}
+          keyExtractor={(item, index) => String(index)}
+          renderItem={this.renderMenu}
+          ListFooterComponent={
+            <Pressable
+              android_ripple={{color: colors.black_transparent}}
+              style={styles.itemMenu}
+              onPress={() => this.props.navigation.replace('Login')}>
+              <Image style={styles.icon} source={Images.ic_exit} />
+              <Text style={styles.txtMenu}>Đăng xuất</Text>
+            </Pressable>
+          }
+        />
+      </View>
+    );
+  }
 }
+const styles = StyleSheet.create({
+  itemMenu: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 8,
+    borderColor: colors.gray2,
+    borderBottomWidth: 1,
+    paddingHorizontal: 16,
+  },
+  txtMenu: {
+    fontSize: 16,
+    marginLeft: 16,
+    fontFamily: fonts.medium,
+  },
+  icon: {
+    width: 50,
+    height: 50,
+    resizeMode: 'contain',
+  },
+});
+// import React, { Component } from 'react'
+// import { Text, View } from 'react-native'
 
+// export default class DrawerComponent extends Component {
+//    render() {
+//       return (
+//          <View>
+//             <Text> textInComponent </Text>
+//          </View>
+//       )
+//    }
+// }

@@ -16,9 +16,13 @@ import  DetailContainer from './src/container/home/DetailContainer';
 
 
 
+
 ////////////////////////////////////////////////////////////
 
 import  DrawerComponent from './src/component/drawer/DrawerComponent';
+import  DrawerConatiner  from './src/container/DrawerContainer/DrawerConatiner';
+import InfoPerson from './src/component/InfoPerson';
+
 
 //bottom-tab
 const Tab = createMaterialBottomTabNavigator();
@@ -54,7 +58,7 @@ const bottomTab = () => {
 const Drawer = createDrawerNavigator();
 const Drawers = () => {
    return (
-      <Drawer.Navigator drawerContent={(props) => <DrawerComponent {...props} />}>
+      <Drawer.Navigator drawerContent={(props) => <DrawerConatiner {...props} />}>
          <Drawer.Screen name="Drawer" component={bottomTab} />
       </Drawer.Navigator>
    );
@@ -72,6 +76,8 @@ const App = () => {
             
             <Stack.Screen name="Login" component={LoginContainer} />
             <Stack.Screen name="Drawers" component={Drawers} />
+            <Stack.Screen name="InfoPerson" component={InfoPerson} />
+            {/* InfoPerson */}
             
             
             

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Login from '../../component/login/Login';
+import DrawerComponent from '../../component/drawer/DrawerComponent';
+// import Login from '../../component/login/Login';
+
 import { loginAction } from '../../redux/actions/Action';
-export class LoginContainer extends Component {
+export class DrawerConatiner extends Component {
    render() {
-      return <Login {...this.props} />;
+      return <DrawerComponent {...this.props} />;
    }
 }
 
@@ -25,5 +27,5 @@ const mapDispatchToProps = (dispatch) => {
    };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(DrawerConatiner);
 // export default LoginContainer

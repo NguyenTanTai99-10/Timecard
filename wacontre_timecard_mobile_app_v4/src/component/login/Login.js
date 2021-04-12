@@ -123,7 +123,7 @@ export default class Login extends Component {
          
          Alert.alert('Lưu ý', 'Bạn phải nhập đầy đủ thông tin đăng nhập');
       } else {
-         console.log('this.state.password====',this.state.password);
+         // console.log('this.state.password====',this.state.password);
          this.props.loginAction({email : this.state.username , password :this.state.password});
       }
    };
@@ -133,21 +133,22 @@ export default class Login extends Component {
       
       if (this.props.status !== null && this.props.status !== prevProps.status) {
          // console.log('(this.props.status==',this.props.message);
-         console.log('vao day1');
+         // console.log('vao day1');
          if (this.props.status === 1) {
-            console.log('vao day2');
+            // console.log('vao day2');
+            console.log(this.props.data);
            
             this.saveLogin();
-            this.props.navigation.replace('Drawers');
+            this.props.navigation.replace('Drawers',{data:this.props.data});
          } else {
-            console.log('vao day message');
+            // console.log('vao day message');
             setTimeout(() => {
                Alert.alert('Thông báo', this.props.message);
             }, 10);
          }
       }
       if (this.props.error !== null && this.props.error !== prevProps.error) {
-         console.log('vao day error');
+         // console.log('vao day error');
          setTimeout(() => {
             Alert.alert('Thông báo', this.props.error);
          }, 10);

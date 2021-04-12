@@ -108,21 +108,21 @@ export default class Home extends Component {
       <View style={{flex: 1}}>
         <HeaderCustom
           title="HOME"
-          // itemLeft={[
-          //   {
-          //     image: {
-          //       source: Images.ic_back_screen,
-          //       style: {
-          //         width: Sizes.h40,
-          //         height: Sizes.h40,
-          //       },
-          //     },
-          //     onPress: () => {
-          //       this.props.navigation.goBack();
-          //     },
-          //     type: 'image',
-          //   },
-          // ]}
+          itemLeft={[
+            {
+              image: {
+                source: Images.ic_menu_right,
+                style: {
+                  width: Sizes.h40,
+                  height: Sizes.h40,
+                },
+              },
+              onPress: () => {
+                this.props.navigation.openDrawer();;
+              },
+              type: 'image',
+            },
+          ]}
           // itemRight={[
           //   {
           //     text: {
@@ -256,7 +256,7 @@ export default class Home extends Component {
                   });
                   this.setState({timeOut: this.state.time});
                   this.setState({checkOut: false});
-                  this.setState({title: 'check in'});
+                  // this.setState({title: 'check in'});
                 }}>
                 <ImageBackground
                   source={Images.bg_bt_check_in}

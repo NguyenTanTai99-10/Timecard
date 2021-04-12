@@ -2,7 +2,10 @@ import React from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome5';
 import { colors } from '../../res/style/theme';
+import Sizes from '../../utils/Sizes';
 import StatusBarView from './StatusBarView';
+
+
 
 const Header = (props) => {
    const iconBack = () => (
@@ -41,7 +44,7 @@ Header.defaultProps = {
 };
 const styles = StyleSheet.create({
    container: {
-      height: 48,
+      height: Platform.OS === 'ios' ? Sizes.s100 : (Sizes.s110 ),
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
