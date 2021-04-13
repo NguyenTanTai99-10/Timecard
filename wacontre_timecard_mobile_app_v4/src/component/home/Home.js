@@ -118,7 +118,7 @@ export default class Home extends Component {
                 },
               },
               onPress: () => {
-                this.props.navigation.openDrawer();;
+                this.props.navigation.openDrawer();
               },
               type: 'image',
             },
@@ -358,14 +358,14 @@ export default class Home extends Component {
               </View>
             )}
           </View>
-          <View style={{justifyContent: 'center', alignItems: 'center'}}>
+          {/* <View style={{justifyContent: 'center', alignItems: 'center'}}>
             <LottieView
               source={require('../../res/Json/24280-calendar-booking.json')}
               autoPlay
               loop
               style={{width: screenWidth, height: screenHeight / 2}}
             />
-          </View>
+          </View> */}
 
           {/* 
             <TouchableOpacity>

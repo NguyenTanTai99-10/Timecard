@@ -15,7 +15,8 @@ export default class RequireLateComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      country: 'Thời gian đi trễ',
+      TimeLate: 'Thời gian đi trễ',
+      Day: 'Chọn ngày',
     };
   }
 
@@ -56,7 +57,7 @@ export default class RequireLateComponent extends Component {
                       value: '1 Day',
                     },
                   ]}
-                  defaultValue={this.state.country}
+                  placeholder={this.state.TimeLate}
                   containerStyle={{height: 40, width: (screenWidth * 0.8) / 2}}
                   style={[{backgroundColor: '#fafafa'}]}
                   itemStyle={{
@@ -65,7 +66,7 @@ export default class RequireLateComponent extends Component {
                   dropDownStyle={{backgroundColor: '#fafafa'}}
                   onChangeItem={item =>
                     this.setState({
-                      country: item.value,
+                      TimeLate: item.value,
                     })
                   }
                 />
@@ -94,7 +95,8 @@ export default class RequireLateComponent extends Component {
                       value: '1 Day',
                     },
                   ]}
-                  defaultValue={this.state.country}
+                  // defaultValue={this.state.country}
+                  placeholder={this.state.TimeLate}
                   containerStyle={{height: 40, width: (screenWidth * 0.8) / 2}}
                   style={{backgroundColor: '#fafafa'}}
                   itemStyle={{
@@ -103,7 +105,7 @@ export default class RequireLateComponent extends Component {
                   dropDownStyle={{backgroundColor: '#fafafa'}}
                   onChangeItem={item =>
                     this.setState({
-                      country: item.value,
+                      TimeLate: item.value,
                     })
                   }
                 />
@@ -166,9 +168,11 @@ export default class RequireLateComponent extends Component {
               flex: 1,
               justifyContent: 'flex-end',
               alignItems: 'center',
+              
             }}>
             <TouchableOpacity
               style={{
+                
                 backgroundColor: 'orange',
                 width: 200,
                 height: 40,

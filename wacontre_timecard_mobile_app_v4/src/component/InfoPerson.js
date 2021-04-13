@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {FlatList, Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
 import {Avatar} from 'react-native-elements';
+import  Icon  from 'react-native-vector-icons/FontAwesome5';
+import  Icons  from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import Images from '../res/image';
 import {colors, fonts, screenWidth,screenHeight} from '../res/style/theme';
@@ -29,7 +31,7 @@ export default class UserInfo extends Component {
 
   componentDidMount() {
     let data = this.props.route.params;
-    console.log(data.data.avatar);
+    // console.log(data.data.avatar);
     this.setState({
       name: data.data.name,
       email: data.data.email,
@@ -58,23 +60,64 @@ export default class UserInfo extends Component {
           />
 
           <View style={[styles.item, {marginTop: 10}]}>
-            <Text style={styles.text}>Họ và tên</Text>
+            <View style={{flexDirection:'row' , justifyContent:'center' , alignItems:'center'}}>
+              <Icon 
+              name ='user-circle'
+              size={35}
+              
+              style={{width:35 , height:35 , color:'#bb64a1'}}
+              />
+              <Text style={[styles.text,{marginLeft:10}]}>Họ và tên</Text>
+            </View>
+            
             <Text style={styles.text}>{this.state.name}</Text>
           </View>
           <View style={styles.item}>
-            <Text style={styles.text}>Ngày Sinh</Text>
+          <View style={{flexDirection:'row' , justifyContent:'center' , alignItems:'center'}}>
+          <Icon 
+              name ='calendar-alt'
+              size={35}
+              
+              style={{width:35 , height:35 , color:'#bb64a1'}}
+              />
+              <Text style={[styles.text,{marginLeft:10}]}>Ngày sinh</Text>
+            </View>
             <Text style={styles.text}>{this.state.birthDay}</Text>
           </View>
           <View style={styles.item}>
-            <Text style={styles.text}>Email</Text>
+          <View style={{flexDirection:'row' , justifyContent:'center' , alignItems:'center'}}>
+          <Icons 
+              name ='gmail'
+              size={35}
+              
+              style={{width:35 , height:35 , color:'#bb64a1'}}
+              />
+              <Text style={[styles.text,{marginLeft:10}]}>Gmail</Text>
+            </View>
             <Text style={styles.text}>{this.state.email}</Text>
           </View>
           <View style={styles.item}>
-            <Text style={styles.text}>Số điện thoại</Text>
+          <View style={{flexDirection:'row' , justifyContent:'center' , alignItems:'center'}}>
+          <Icon 
+              name ='phone-square-alt'
+              size={35}
+              
+              style={{width:35 , height:35 , color:'#bb64a1'}}
+              />
+              <Text style={[styles.text,{marginLeft:10}]}>Số điện thoại</Text>
+            </View>
             <Text style={styles.text}>{this.state.phone}</Text>
           </View>
           <View style={styles.item}>
-            <Text style={styles.text}>Chức danh</Text>
+          <View style={{flexDirection:'row' , justifyContent:'center' , alignItems:'center'}}>
+          <Icon 
+              name ='star'
+              size={30}
+              
+              style={{width:35 , height:35 , color:'#bb64a1'}}
+              />
+              <Text style={[styles.text,{marginLeft:10}]}>Nghề nghiệp</Text>
+            </View>
             <Text style={styles.text}>{this.state.position}</Text>
           </View>
         </ImageBackground>

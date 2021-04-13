@@ -14,12 +14,12 @@ const LoadingView = props => {
           zIndex: 1,
         }}>
         
-        <LottieView
+        {/* <LottieView
           source={require('../../res/Json/9844-loading-40-paperplane.json')}
           autoPlay
           loop
           style={{height: 200, width: 200}}
-        />
+        /> */}
         <ActivityIndicator size="large" color={colors.blue} />
 
         {/* <Text style={{ fontSize: 16, color: 'white', marginTop: 8, fontWeight: 'bold' }}>

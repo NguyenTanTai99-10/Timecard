@@ -27,6 +27,8 @@ import RequireLateContainer from './src/container/RequireLate/RequireLateContain
 import FogetPasswordConatiner from './src/container/FogetPasswordConatiner/FogetPasswordConatiner';
 import ChangePasswordContainer from './src/container/ChangePasswordContainer/ChangePasswordContainer';
 import AttendanceContainer from './src/container/AttendanceContainer/AttendanceContainer';
+import CompanyMemberContainer from './src/container/CompanyMemberContainer/CompanyMemberContainer';
+
 
 
 
@@ -35,6 +37,8 @@ import AttendanceContainer from './src/container/AttendanceContainer/AttendanceC
 //bottom-tab
 const Tab = createMaterialBottomTabNavigator();
 const bottomTab = () => {
+   //hospital-user
+   //CompanyMemberContainer
    return (
       <Tab.Navigator
          initialRouteName="Home"
@@ -48,7 +52,7 @@ const bottomTab = () => {
             component={HomeContainer}
             options={{
                tabBarLabel: 'Trang chủ',
-               tabBarIcon: ({ color }) => <Icon name="home" color={color} size={26} />,
+               tabBarIcon: ({ color }) => <Icon name="home" color={color} size={25} />,
             }}
          />
          <Tab.Screen
@@ -56,7 +60,15 @@ const bottomTab = () => {
             component={AttendanceContainer}
             options={{
                tabBarLabel: 'Thống kê',
-               tabBarIcon: ({ color }) => <Icon name="chart-bar" color={color} size={26} />,
+               tabBarIcon: ({ color }) => <Icon name="chart-bar" color={color} size={25} />,
+            }}
+         />
+          <Tab.Screen
+            name="CompanyMemberContainer"
+            component={CompanyMemberContainer}
+            options={{
+               tabBarLabel: 'Thành viên',
+               tabBarIcon: ({ color }) => <Icon name="hospital-user" color={color} size={25} />,
             }}
          />
       </Tab.Navigator>
@@ -89,6 +101,8 @@ const App = () => {
             <Stack.Screen name="FogetPasswordConatiner" component={FogetPasswordConatiner} />
             <Stack.Screen name="ChangePasswordContainer" component={ChangePasswordContainer} />
             <Stack.Screen name="AttendanceContainer" component={AttendanceContainer} />
+            <Stack.Screen name="CompanyMemberContainer" component={CompanyMemberContainer} />
+            {/* CompanyMemberComponent */}
             {/* AttendanceContainer */}
             {/* ChangePasswordContainer */}
             {/* FogetPasswordConatiner */}

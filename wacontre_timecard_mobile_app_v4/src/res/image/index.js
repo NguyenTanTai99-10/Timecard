@@ -13,6 +13,21 @@ const Images = {
   // ic_request_late.png
   //ic_check_in.png
   // ic_error_data.png
+  //header_salary.png
+  // icon-companymember.png
+  // icon_skype.png
+  //icon_email.png
+  //icon_phone.png
+  //icon_attendance
+  //icon-privacypolicy
+  icon_privacypolicy: require('./img/icon-privacypolicy.png'),
+
+  icon_attendance: require('./img/icon_attendance.png'),
+  icon_skype: require('./img/icon_skype.png'),
+  icon_email: require('./img/icon_email.png'),
+  icon_phone: require('./img/icon_phone.png'),
+  ic_companymember: require('./img/icon-companymember.png'),
+  ic_header_salary: require('./img/header_salary.png'),
 
   ic_checkin_checkout: require('./img/icon-checkin_checkout.png'),
   ic_facebook: require('./img/facebook.png'),

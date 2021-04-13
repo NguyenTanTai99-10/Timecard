@@ -51,11 +51,15 @@ export default class DrawerComponent extends Component {
     </Pressable>
   );
   render() {
-    console.log('=====', this.state.data);
+    // console.log('=====', this.state.data);
     const {data} = this.state;
     return (
       <View style={{flex: 1}}>
-        <Header title={`Xin chào ${data.name}`} />
+        <Header 
+        title={`Xin chào ${data.name}`}
+        image ={this.state.data.avatar}
+        
+         />
         {/* <Header title='Hello Friend'
             // {`Xin chào ${userData.fullname}`} 
             /> */}
