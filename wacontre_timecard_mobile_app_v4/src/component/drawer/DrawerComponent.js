@@ -56,8 +56,9 @@ export default class DrawerComponent extends Component {
     return (
       <View style={{flex: 1}}>
         <Header 
-        title={`Xin chào ${data.name}`}
+        title={` ${data.name}`}
         image ={this.state.data.avatar}
+        isShowImage
         
          />
         {/* <Header title='Hello Friend'

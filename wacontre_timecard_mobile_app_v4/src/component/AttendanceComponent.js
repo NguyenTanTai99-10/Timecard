@@ -124,7 +124,7 @@ export default class AttendanceComponent extends Component {
             
               <ScrollView style={{flex:1}}>
                   <FlatList
-                style={{flex: 1}}
+                style={{}}
                 data={this.state.data}
                 keyExtractor={(item, index) => String(index)}
                 renderItem={this.renderItem}

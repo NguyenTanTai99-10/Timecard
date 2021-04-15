@@ -7,7 +7,9 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Alert
+  Alert,
+  TextInput,
+  Keyboard
 } from 'react-native';
 import Images from '../res/image';
 import Header from './custom/Header';
@@ -18,126 +20,69 @@ export default class CompanyMemberComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      imageAvt :'',
-      dataMB :'',
-      data: [
-        {
-          date: 'https://f41-zpg.zdn.vn/4276645316036163978/72c42136fa0708595116.jpg?fbclid=IwAR20ZCoBSgu7s8EofxQA2zrdQvmhfto4Cjc9lOxbmsrXxcrT3XXO1ZJ3Xjc',
-          name: 'Nguyen Tan Tai',
-          status: 'IOS Developer',
-        },
-        {
-          date: 'https://i.imgur.com/8OMrXbH.png',
-          name: '8:30/17:30',
-          status: 'WED Developer',
-        },
-        {
-          date: 'https://i.imgur.com/8OMrXbH.png',
-          name: 'Nguyen Tan Tai',
-          status: 'IOS Developer',
-        },
-        {
-          date: 'https://i.imgur.com/8OMrXbH.png',
-          name: '8:30/17:30',
-          status: 'WED Developer',
-        },
-        {
-          date: 'https://i.imgur.com/8OMrXbH.png',
-          name: 'Nguyen Tan Tai',
-          status: 'IOS Developer',
-        },
-        {
-          date: 'https://i.imgur.com/8OMrXbH.png',
-          name: '8:30/17:30',
-          status: 'WED Developer',
-        },
-        {
-          date: 'https://i.imgur.com/8OMrXbH.png',
-          name: 'Nguyen Tan Tai',
-          status: 'IOS Developer',
-        },
-        {
-          date: 'https://i.imgur.com/8OMrXbH.png',
-          name: '8:30/17:30',
-          status: 'WED Developer',
-        },
-        {
-          date: 'https://i.imgur.com/8OMrXbH.png',
-          name: '8:30/17:30',
-          status: 'WED Developer',
-        },
-        {
-          date: 'https://f41-zpg.zdn.vn/4276645316036163978/72c42136fa0708595116.jpg?fbclid=IwAR20ZCoBSgu7s8EofxQA2zrdQvmhfto4Cjc9lOxbmsrXxcrT3XXO1ZJ3Xjc',
-          name: '8:30/17:30',
-          status: 'WED Developer',
-        },
-        {
-          date: 'https://i.imgur.com/8OMrXbH.png',
-          name: '8:30/17:30',
-          status: 'WED Developer',
-        },
-        {
-          date: 'https://i.imgur.com/8OMrXbH.png',
-          name: 'Nguyen Tan Tai',
-          status: 'IOS Developer',
-        },
-        {
-          date: 'https://f41-zpg.zdn.vn/4276645316036163978/72c42136fa0708595116.jpg?fbclid=IwAR20ZCoBSgu7s8EofxQA2zrdQvmhfto4Cjc9lOxbmsrXxcrT3XXO1ZJ3Xjc',
-          name: 'Nguyen Tan Tai123',
-          status: 'IOS Developer123',
-        },
-        {
-          date: 'https://i.imgur.com/8OMrXbH.png',
-          name: 'Nguyen Tan Tai123',
-          status: 'IOS Developer123',
-        },
-        {
-          date: 'https://f41-zpg.zdn.vn/4276645316036163978/72c42136fa0708595116.jpg?fbclid=IwAR20ZCoBSgu7s8EofxQA2zrdQvmhfto4Cjc9lOxbmsrXxcrT3XXO1ZJ3Xjc',
-          name: 'Nguyen Tan Tai123',
-          status: 'IOS Developer123',
-        },
-      ],
+      imageAvt: '',
+      dataMB: '',
+      dataSearch: '',
+      search :'',
+      backgroundColor :false
+      
     };
+    this.keyboardDidHide = this.keyboardDidHide.bind(this);
   }
-  componentDidMount(){
+  
+  componentDidMount() {
+    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
+    
     // console.log('this.props.dataLG',this.props.dataLG.token);
-    this.setState({imageAvt:this.props.dataLG.avatar})
+    this.setState({imageAvt: this.props.dataLG.avatar});
     //
-    this.didFocusListener =  this.props.navigation.addListener('focus', () => {
-      // do something 
-      this.props.companyMenberAction({token:this.props.dataLG.token})
+    this.didFocusListener = this.props.navigation.addListener('focus', () => {
+      // do something
+      this.props.companyMenberAction({token: this.props.dataLG.token});
     });
   }
-   componentDidUpdate(prevProps) {
-      
-      
-    if (this.props.statusCM !== null && this.props.statusCM !== prevProps.statusCM) {
-       // console.log('(this.props.status==',this.props.message);
-       // console.log('vao day1');
-       if (this.props.statusCM === 1) {
-          // console.log('vao day2');
-          // console.log(this.props.dataCM);
-          this.setState({dataMB:this.props.dataCM})
-         
-         
-       } else {
-          // console.log('vao day message');
-          setTimeout(() => {
-             Alert.alert('Thông báo', this.props.messageCM);
-          }, 10);
-       }
-    }
-    if (this.props.errorCM !== null && this.props.errorCM !== prevProps.errorCM) {
-       // console.log('vao day error');
-       setTimeout(() => {
-          Alert.alert('Thông báo', this.props.errorCM);
-       }, 10);
-    }
+  keyboardDidHide() {
+    this.setState({backgroundColor:false})
  }
- 
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.statusCM !== null &&
+      this.props.statusCM !== prevProps.statusCM
+    ) {
+      // console.log('(this.props.status==',this.props.message);
+      // console.log('vao day1');
+      if (this.props.statusCM === 1) {
+        // console.log('vao day2');
+        // console.log(this.props.dataCM);
+        this.setState({dataMB: this.props.dataCM});
+        this.setState({dataSearch: this.props.dataCM});
+        
+      } else {
+        // console.log('vao day message');
+        setTimeout(() => {
+          Alert.alert('Thông báo', this.props.messageCM);
+        }, 10);
+      }
+    }
+    if (
+      this.props.errorCM !== null &&
+      this.props.errorCM !== prevProps.errorCM
+    ) {
+      // console.log('vao day error');
+      setTimeout(() => {
+        Alert.alert('Thông báo', this.props.errorCM);
+      }, 10);
+    }
+  }
+
   renderItem = item => (
-    <TouchableOpacity
-    onPress={()=>{this.props.navigation.navigate('InfoMemberComponent',{item:item.item})}}
+    
+      <TouchableOpacity
+      onPress={() => {
+        this.props.navigation.navigate('InfoMemberComponent', {
+          item: item.item,
+        });
+      }}
       style={{
         justifyContent: 'center',
         alignItems: 'center',
@@ -159,34 +104,67 @@ export default class CompanyMemberComponent extends Component {
             source={{
               uri: `${item.item.avatar}`,
             }}
-            style={{height: 50, width: 50 , borderRadius:9999}}
+            style={{height: 50, width: 50, borderRadius: 9999}}
             resizeMode="cover"
           />
         </View>
 
-        <Text style={{marginTop: 5 , fontWeight: '600',}}>{item.item.name.toUpperCase()}</Text>
-        <Text style={{fontWeight: '600',}}>{item.item.position.toUpperCase()}</Text>
+        <Text style={{marginTop: 5, fontWeight: '600'}}>
+          {item.item.name.toUpperCase()}
+        </Text>
+        <Text style={{fontWeight: '600'}}>
+          {item.item.position.toUpperCase()}
+        </Text>
       </View>
     </TouchableOpacity>
+    
+    
   );
+  textSearch=(text)=>{
+    console.log(text.length);
+    if (text.length >= 1){
+      const newData = this.state.dataSearch.filter((item)=>{
+        // console.log(item);
+        const itemData = item.name ? item.name.toUpperCase() : ''.toUpperCase();
+        const textData = text.toUpperCase();
+        return itemData.indexOf(textData) > -1;
 
+      });
+      this.setState({dataMB:newData});
+      this.setState({search:text})
+    }
+    else {
+      this.setState({dataMB:this.props.dataCM});
+    }
+  }
   render() {
-      // console.log('state===',this.state.imageAvt);
+    // console.log('state===',this.state.imageAvt);
     return (
       <View style={{flex: 1}}>
-        <Header 
-        title="Company Member" 
-        isShowImage
-        
-        image={this.state.imageAvt}
+        <Header
+          title="Company Member"
+          isShowImage
+          image={this.state.imageAvt}
         />
-        {this.props.loadingCM &&<LoadingView/>}
-        
+        {this.props.loadingCM && <LoadingView />}
+
         <ImageBackground
           source={Images.ic_bg_timecard}
           style={{height: screenHeight, width: screenWidth}}>
-          <ScrollView nestedScrollEnabled >
+            <View style={{  marginTop:5}}>
+              <TextInput
+              // multiline
+              // value={this.state.search}
+              onFocus={()=>{this.setState({backgroundColor:true})}}
+              onChangeText={(text)=>{this.textSearch(text)}}
+            style={{height: 40 ,borderWidth:1  , borderRadius:20 ,borderColor:'#BFBFBF' , width:screenWidth/2 }}
+            placeholder="Search..."></TextInput>
+            </View>
+          
+          <ScrollView nestedScrollEnabled  style={[{backgroundColor:this.state.backgroundColor ? '#00000036' : null} , {zIndex:10}]}>
             <FlatList
+            style={[{backgroundColor:this.state.backgroundColor ? '#00000036' : null} , {zIndex:10}]}
+           
               data={this.state.dataMB}
               keyExtractor={(item, index) => String(index)}
               renderItem={this.renderItem}

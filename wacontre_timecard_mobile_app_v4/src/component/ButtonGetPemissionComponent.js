@@ -32,7 +32,10 @@ export default class Buttons extends Component {
 
     return (
       <View style={{flex: 1}}>
-        <Header title="Get Permission" />
+        <Header title="Get Permission"
+        isShowRight
+        
+        iconRight={()=>{this.props.navigation.navigate('AddRequiesComponent')}} />
         <ImageBackground
           source={Images.ic_bg_timecard}
           style={{
@@ -40,7 +43,7 @@ export default class Buttons extends Component {
             width: screenWidth,
             flex: 1,
           }}>
-            <View style={{padding:20}}>
+            <View style={{padding:15}}>
  <View
           style={[
             {
@@ -95,9 +98,13 @@ export default class Buttons extends Component {
             </View>
 
        
-        <View style={{paddingVertical: 10, paddingHorizontal:15,  flex: 1}}>
+        <View style={{ paddingHorizontal:15,  flex: 1}}>
+          <ScrollView style={{flex:1}}>
+
+          
           <View
             style={{
+              flex: 1,
               
               borderRadius: 20,
               
@@ -108,6 +115,7 @@ export default class Buttons extends Component {
               <CheckGetPemissionContainer />
             )}
           </View>
+          </ScrollView>
         </View>
         </ImageBackground>
       </View>

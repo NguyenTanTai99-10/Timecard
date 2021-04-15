@@ -22,6 +22,25 @@ const Images = {
   //icon-privacypolicy
   //icon_position.png
   //icon_department.png
+  //icon_decline.png
+  // checked.png
+  //icon_waiting.png
+  //icon_approved.png
+  // icon-clock.png
+  //icon_approved_white.png
+  //icon_decline_white.png
+  // icon_add.png
+  icon_add: require('./img/icon_add.png'),
+
+  icon_decline_white: require('./img/icon_decline_white.png'),
+
+  icon_approved_white: require('./img/icon_approved_white.png'),
+
+  icon_clock: require('./img/icon-clock.png'),
+  icon_approved: require('./img/icon_approved.png'),
+  icon_waiting: require('./img/icon_waiting.png'),
+  checked: require('./img/checked.png'),
+  icon_decline: require('./img/icon_decline.png'),
   icon_department: require('./img/icon_department.png'),
 
   icon_position: require('./img/icon_position.png'),

@@ -6,6 +6,7 @@ import {
   Pressable,
   ImageBackground,
   Image,
+  TouchableOpacity,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome5';
 import Images from '../../res/image';
@@ -31,8 +32,24 @@ const Header = props => {
       <Icon name="bars" size={20} color={colors.white} />
     </Pressable>
   );
-  const images = (image) => 
-  (
+  const iconRight = () => (
+    <TouchableOpacity
+      style={{
+        width: 40,
+        height: 40,
+        marginHorizontal: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        
+      }}
+      onPress={() => props.iconRight()}>
+        {/* plus-circle */}
+        <Icon name="plus-circle" size={25} color={colors.white} />
+      {/* <Image  source={Images.icon_add} style={{width:30, height:30}}/> */}
+      {/* <Text>acb</Text> */}
+    </TouchableOpacity>
+  );
+  const images = image => (
     // console.log(props.image;
 
     <View
@@ -43,21 +60,20 @@ const Header = props => {
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 100,
-       
       }}>
       {/* <View
         style={{
           borderRadius: 100,
           backgroundColor:'red'
         }}> */}
-        <Image
-          source={{
-            uri: `${props.image}`,
-          }}
-          style={{width: 30, height: 30 , resizeMode:'cover',borderRadius:9999}}
-          // resizeMode="contain"
-          ></Image>
-        
+      <Image
+        source={{
+          uri: `${props.image}`,
+        }}
+        style={{width: 30, height: 30, resizeMode: 'cover', borderRadius: 9999}}
+        // resizeMode="contain"
+      ></Image>
+
       {/* </View> */}
     </View>
   );
@@ -75,19 +91,21 @@ const Header = props => {
           justifyContent: 'space-between',
           alignItems: 'center',
           // flex: 3,
+          // flex:1
         }}>
-        <View
-          style={{ justifyContent: 'center', alignItems: 'flex-start'}}>
+        <View style={{justifyContent: 'center', alignItems: 'flex-start' , flex:0.2}}>
           {props.isShowMenu ? iconMenu() : null}
           {props.isShowBack ? iconBack() : null}
         </View>
 
-        <View style={{ justifyContent: 'center', alignItems: 'center', }}>
+        <View style={{justifyContent: 'center', alignItems: 'center' , flex:0.6}}>
           <Text style={styles.title}>{props.title}</Text>
         </View>
-        <View
-          style={{ justifyContent: 'center', alignItems: 'flex-end'}}>
+        <View style={{justifyContent: 'center', alignItems: 'flex-end' ,flex:0.2}}>
           {props.isShowImage ? images(props.image) : null}
+          
+
+          {props.isShowRight ? iconRight() : null}
         </View>
       </ImageBackground>
       {/* </View> */}
@@ -99,6 +117,7 @@ export default Header;
 Header.defaultProps = {
   onPressBack: () => {},
   onPressMenu: () => {},
+  iconRight :()=>{}
 };
 const styles = StyleSheet.create({
   container: {
