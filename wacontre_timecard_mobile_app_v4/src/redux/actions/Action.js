@@ -8,3 +8,14 @@ export const loginAction = (input) => {
         input: input
     })
 }
+// Company Member
+export const COMPANYMEMBER = "COMPANYMEMBER"
+export const COMPANYMEMBER_SUCCESS = "COMPANYMEMBER_SUCCESS"
+export const COMPANYMEMBER_ERROR = "COMPANYMEMBER_ERROR"
+export const companyMenberAction = (input) => {
+    // console.log('loginAction==',input);
+    return ({
+        type: COMPANYMEMBER,
+        input: input
+    })
+}

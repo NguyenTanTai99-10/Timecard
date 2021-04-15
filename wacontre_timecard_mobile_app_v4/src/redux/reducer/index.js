@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
+import CompanyMemberReducer from './CompanyMemberReducer';
 import loginReducer from './LoginReducer';
 
 
 
 const allReducers = combineReducers({
-   loginReducer
+   loginReducer,
+   CompanyMemberReducer
    // loginReducer,
    // signupReducer,
    // createWalletReducer,

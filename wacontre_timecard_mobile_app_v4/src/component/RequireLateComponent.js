@@ -21,7 +21,7 @@ export default class RequireLateComponent extends Component {
   }
 
   render() {
-      console.log(this.state.country);
+      // console.log(this.state.country);
     return (
       <View style={{flex: 1, backgroundColor: '#F5F5F5'}}>
         <Header

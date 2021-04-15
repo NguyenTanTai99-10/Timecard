@@ -28,6 +28,16 @@ import FogetPasswordConatiner from './src/container/FogetPasswordConatiner/Foget
 import ChangePasswordContainer from './src/container/ChangePasswordContainer/ChangePasswordContainer';
 import AttendanceContainer from './src/container/AttendanceContainer/AttendanceContainer';
 import CompanyMemberContainer from './src/container/CompanyMemberContainer/CompanyMemberContainer';
+import InfoMemberComponent from './src/component/InfoMemberComponent';
+import YourGetPermissionContainer from './src/container/GetPermissionContainer/YourGetPermissionContainer';
+import ButtonGetPemissionComponent from './src/component/ButtonGetPemissionComponent';
+import CheckGetPemissionContainer from './src/container/GetPermissionContainer/CheckGetPemissionContainer';
+
+
+
+
+
+
 
 
 
@@ -59,7 +69,7 @@ const bottomTab = () => {
             name="AttendanceContainer"
             component={AttendanceContainer}
             options={{
-               tabBarLabel: 'Thống kê',
+               tabBarLabel: 'Điểm danh',
                tabBarIcon: ({ color }) => <Icon name="chart-bar" color={color} size={25} />,
             }}
          />
@@ -69,6 +79,14 @@ const bottomTab = () => {
             options={{
                tabBarLabel: 'Thành viên',
                tabBarIcon: ({ color }) => <Icon name="hospital-user" color={color} size={25} />,
+            }}
+         />
+         <Tab.Screen
+            name="ButtonGetPemissionComponent"
+            component={ButtonGetPemissionComponent}
+            options={{
+               tabBarLabel: 'Xin phép',
+               tabBarIcon: ({ color }) => <Icon name="clipboard-list" color={color} size={25} />,
             }}
          />
       </Tab.Navigator>
@@ -102,12 +120,20 @@ const App = () => {
             <Stack.Screen name="ChangePasswordContainer" component={ChangePasswordContainer} />
             <Stack.Screen name="AttendanceContainer" component={AttendanceContainer} />
             <Stack.Screen name="CompanyMemberContainer" component={CompanyMemberContainer} />
+            <Stack.Screen name="YourGetPermissionContainer" component={YourGetPermissionContainer} />
+            <Stack.Screen name="InfoMemberComponent" component={InfoMemberComponent} />
+            <Stack.Screen name="ButtonGetPemissionComponent" component={ButtonGetPemissionComponent} />
+            <Stack.Screen name="CheckGetPemissionContainer" component={CheckGetPemissionContainer} />
+            {/* ButtonGetPemission */}
             {/* CompanyMemberComponent */}
             {/* AttendanceContainer */}
             {/* ChangePasswordContainer */}
             {/* FogetPasswordConatiner */}
             {/* InfoPerson */}
             {/* RequireLateContainer */}
+            {/* GetPermissionContainer */}
+            {/* InfoMemberComponent */}
+            {/* CheckGetPemissionContainer */}
             
             
             

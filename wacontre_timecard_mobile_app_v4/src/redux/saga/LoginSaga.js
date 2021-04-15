@@ -15,13 +15,13 @@ function* LoginFlow(action) {
 		} else {
 			yield put({
 				type: LOGIN_ERROR,
-				error: errorConnectServer.vn,
+				error: "Lỗi Sever"
 			});
 		}
 	} catch (error) {
 		yield put({
 			type: LOGIN_ERROR,
-			error: errorConnectServer.vn,
+			error: "Lỗi Sever"
 		});
 	}
 }

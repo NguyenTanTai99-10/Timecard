@@ -1,4 +1,5 @@
 import { all } from 'redux-saga/effects';
+
 // import { watchCreateNewPassSaga } from './account/forget/createNewPassSaga';
 // import { watchSendOTPSaga } from './account/forget/sendOTPSaga';
 // import { watchVerifyOTPSaga } from './account/forget/verifyOTPSaga';
@@ -9,10 +10,12 @@ import { all } from 'redux-saga/effects';
 // import { watchGetWalletSaga } from './home/getWalletSaga';
 // import { watchUpdateWalletSaga } from './home/updateWalletSaga';
 import { watchLogin } from './LoginSaga';
+import { watchCompanyMember } from './CompanyMemberSaga';
 
 export default function* rootSaga() {
    yield all([
-      watchLogin()
+      watchLogin(),
+      watchCompanyMember()
       // watchLoginSaga(),
       // watchSignupSaga(),
       // watchCreateWalletSaga(),

@@ -159,12 +159,12 @@ export default class Home extends Component {
                 <Icon name="wifi" size={20} style={{color: '#91D5FF'}}></Icon>
                 <Text style={{fontSize: 20, paddingLeft: 15}}>Wifi</Text>
               </View>
-              <View style={{flex: 0.5, marginTop: 10, flexDirection: 'row'}}>
+              <View style={{flex: 0.5, flexDirection: 'row'}}>
                 <Icon
                   name="calendar-alt"
                   size={25}
                   style={{color: 'orange'}}></Icon>
-                <Text style={{paddingLeft: 15, fontSize: 15}}>
+                <Text style={{paddingLeft: 15, fontSize: 15 , width:'80%'}}>
                   {moment(new Date()).format('dddd')}{' '}
                   {moment(new Date()).format('L')}
                 </Text>

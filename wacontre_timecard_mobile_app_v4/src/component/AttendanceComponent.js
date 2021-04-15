@@ -97,7 +97,7 @@ export default class AttendanceComponent extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <Header title="Attendance Time" isShowImage
+        <Header title="Attendance Time"
         
         />
         <ImageBackground

@@ -1,31 +1,41 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import CompanyMemberComponent from '../../component/CompanyMemberComponent';
+import {companyMenberAction, loginAction} from '../../redux/actions/Action';
 
 
-import { loginAction } from '../../redux/action/account/loginAction';
 export class CompanyMemberContainer extends Component {
-   render() {
-      return <CompanyMemberComponent {...this.props} />;
-   }
+  render() {
+    return <CompanyMemberComponent {...this.props} />;
+  }
 }
 
-const mapStateToProps = (state) => {
-//    return {
-//       status: state.loginReducer.status,
-//       data: state.loginReducer.data,
-//       loading: state.loginReducer.loading,
-//       message: state.loginReducer.message,
-//       error: state.loginReducer.error,
-//    };
+const mapStateToProps = state => {
+   // console.log('state.CompanyMemberReducer.data===',state.loginReducer.data);
+  return {
+    statusCM: state.CompanyMemberReducer.status,
+    dataCM: state.CompanyMemberReducer.data,
+    loadingCM: state.CompanyMemberReducer.loading,
+    messageCM: state.CompanyMemberReducer.message,
+    errorCM: state.CompanyMemberReducer.error,
+    //------------------------------
+    statusLG: state.loginReducer.status,
+    dataLG: state.loginReducer.data,
+    loadingLG: state.loginReducer.loading,
+    messageLG: state.loginReducer.message,
+    errorLG: state.loginReducer.error,
+  };
 };
 
-const mapDispatchToProps = (dispatch) => {
-//    return {
-//       loginAction: (username, password) => dispatch(loginAction(username, password)),
-//    };
+const mapDispatchToProps = dispatch => {
+  return {
+    companyMenberAction: input => dispatch(companyMenberAction(input)),
+    loginAction: input => dispatch(loginAction(input)),
+  };
 };
 
-// export default connect(mapStateToProps, mapDispatchToProps)(DetailContainer);
-export default  CompanyMemberContainer
-
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(CompanyMemberContainer);
+// export default  CompanyMemberContainer

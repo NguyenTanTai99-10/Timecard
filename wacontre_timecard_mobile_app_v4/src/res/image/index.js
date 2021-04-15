@@ -20,6 +20,11 @@ const Images = {
   //icon_phone.png
   //icon_attendance
   //icon-privacypolicy
+  //icon_position.png
+  //icon_department.png
+  icon_department: require('./img/icon_department.png'),
+
+  icon_position: require('./img/icon_position.png'),
   icon_privacypolicy: require('./img/icon-privacypolicy.png'),
 
   icon_attendance: require('./img/icon_attendance.png'),
