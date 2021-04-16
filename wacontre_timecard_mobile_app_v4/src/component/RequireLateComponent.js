@@ -17,11 +17,31 @@ export default class RequireLateComponent extends Component {
     this.state = {
       TimeLate: 'Thời gian đi trễ',
       Day: 'Chọn ngày',
+      data: [
+        {
+          "label": '30 Phút',
+          "value": '30 Phút',
+
+          // hidden: true,
+        },
+        {
+          "label": '1 Hour',
+          "value": '1 Hour',
+        },
+        {
+          "label": '2 Hour',
+          "value": '2 Hour',
+        },
+        {
+          "label": '1 Day',
+          "value": '1 Day',
+        },
+      ],
     };
   }
 
   render() {
-      // console.log(this.state.country);
+    // console.log(this.state.country);
     return (
       <View style={{flex: 1, backgroundColor: '#F5F5F5'}}>
         <Header
@@ -37,26 +57,7 @@ export default class RequireLateComponent extends Component {
               <View style={{flex: 0.5}}>
                 <Text>Chọn ngày</Text>
                 <DropDownPicker
-                  items={[
-                    {
-                      label: '30 Phút',
-                      value: '30 Phút',
-
-                      hidden: true,
-                    },
-                    {
-                      label: '1 Hour',
-                      value: '1 Hour',
-                    },
-                    {
-                      label: '2 Hour',
-                      value: '2 Hour',
-                    },
-                    {
-                      label: '1 Day',
-                      value: '1 Day',
-                    },
-                  ]}
+                  items={this.state.data}
                   placeholder={this.state.TimeLate}
                   containerStyle={{height: 40, width: (screenWidth * 0.8) / 2}}
                   style={[{backgroundColor: '#fafafa'}]}
@@ -75,26 +76,7 @@ export default class RequireLateComponent extends Component {
               <View style={{flex: 0.5}}>
                 <Text>Thời gian đi trễ</Text>
                 <DropDownPicker
-                  items={[
-                    {
-                      label: '30 Phút',
-                      value: '30 Phút',
-
-                      hidden: true,
-                    },
-                    {
-                      label: '1 Hour',
-                      value: '1 Hour',
-                    },
-                    {
-                      label: '2 Hour',
-                      value: '2 Hour',
-                    },
-                    {
-                      label: '1 Day',
-                      value: '1 Day',
-                    },
-                  ]}
+                  items={this.state.data}
                   // defaultValue={this.state.country}
                   placeholder={this.state.TimeLate}
                   containerStyle={{height: 40, width: (screenWidth * 0.8) / 2}}
@@ -168,11 +150,9 @@ export default class RequireLateComponent extends Component {
               flex: 1,
               justifyContent: 'flex-end',
               alignItems: 'center',
-              
             }}>
             <TouchableOpacity
               style={{
-                
                 backgroundColor: 'orange',
                 width: 200,
                 height: 40,

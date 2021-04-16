@@ -9,12 +9,13 @@ import {
   View,
   Alert,
   TextInput,
-  Keyboard
+  Keyboard,
 } from 'react-native';
 import Images from '../res/image';
 import Header from './custom/Header';
 import {colors, fonts, screenWidth, screenHeight} from '../res/style/theme';
 import LoadingView from './custom/LoadingView';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 export default class CompanyMemberComponent extends Component {
   constructor(props) {
@@ -23,16 +24,37 @@ export default class CompanyMemberComponent extends Component {
       imageAvt: '',
       dataMB: '',
       dataSearch: '',
-      search :'',
-      backgroundColor :false
-      
+      search: '',
+      backgroundColor: false,
+      Kqcc: '',
+      data: [
+        // {label: 'barking every day', value: 'barking every day'},
+        // {label: 'Website Developer', value: 'Website Developer'},
+        // {label: 'Accountant', value: 'Accountant'},
+        // {label: 'DIRECTOR & TESTER', value: 'DIRECTOR & TESTER'},
+        // {label: 'Video Editor', value: 'Video Editor'},
+        // {label: 'Faculty of Law', value: 'Faculty of Law'},
+        // {label: 'Accountant', value: 'Accountant'},
+        // {label: 'Website Developer', value: 'Website Developer'},
+        // {label: 'Android Developer', value: 'Android Developer'},
+        // {label: 'Designer', value: 'Designer'},
+        // {label: 'Mobile Developer', value: 'Mobile Developer'},
+        // {label: 'QC', value: 'QC'},
+        // {label: 'IOS Developer', value: 'IOS Developer'},
+        // {label: 'Mobile Developer', value: 'Mobile Developer'},
+        // {label: 'Sales Marketing', value: 'Sales Marketing'},
+        // {label: 'Recruiter', value: 'Recruiter'},
+      ],
     };
     this.keyboardDidHide = this.keyboardDidHide.bind(this);
   }
-  
+
   componentDidMount() {
-    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide);
-    
+    this.keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      this.keyboardDidHide,
+    );
+
     // console.log('this.props.dataLG',this.props.dataLG.token);
     this.setState({imageAvt: this.props.dataLG.avatar});
     //
@@ -42,8 +64,8 @@ export default class CompanyMemberComponent extends Component {
     });
   }
   keyboardDidHide() {
-    this.setState({backgroundColor:false})
- }
+    this.setState({backgroundColor: false});
+  }
   componentDidUpdate(prevProps) {
     if (
       this.props.statusCM !== null &&
@@ -54,9 +76,37 @@ export default class CompanyMemberComponent extends Component {
       if (this.props.statusCM === 1) {
         // console.log('vao day2');
         // console.log(this.props.dataCM);
+        var temp = [];
+        this.props.dataCM.map(item => {
+          // console.log(item.position);
+          var obj = {};
+
+          obj[`value`] = `${item.position}`;
+          obj[`label`] = `${item.position}`;
+          // const kq = obj;
+          temp.push(obj);
+        });
+        // console.log(temp);
+        const kqc = temp.filter((item, index) => {
+          console.log(
+            // a. Item
+            item,
+            // b. Index
+            index,
+            // c. indexOf
+            temp.indexOf(item),
+            // d. Condition
+            temp.indexOf(item) === index,
+          );
+
+          return temp.indexOf(item) === index;
+        });
+        this.setState({
+          data: temp,
+        });
+
         this.setState({dataMB: this.props.dataCM});
         this.setState({dataSearch: this.props.dataCM});
-        
       } else {
         // console.log('vao day message');
         setTimeout(() => {
@@ -76,8 +126,7 @@ export default class CompanyMemberComponent extends Component {
   }
 
   renderItem = item => (
-    
-      <TouchableOpacity
+    <TouchableOpacity
       onPress={() => {
         this.props.navigation.navigate('InfoMemberComponent', {
           item: item.item,
@@ -117,28 +166,25 @@ export default class CompanyMemberComponent extends Component {
         </Text>
       </View>
     </TouchableOpacity>
-    
-    
   );
-  textSearch=(text)=>{
+
+  textSearch = text => {
     console.log(text.length);
-    if (text.length >= 1){
-      const newData = this.state.dataSearch.filter((item)=>{
+    if (text.length >= 1) {
+      const newData = this.state.dataSearch.filter(item => {
         // console.log(item);
         const itemData = item.name ? item.name.toUpperCase() : ''.toUpperCase();
         const textData = text.toUpperCase();
         return itemData.indexOf(textData) > -1;
-
       });
-      this.setState({dataMB:newData});
-      this.setState({search:text})
+      this.setState({dataMB: newData});
+      this.setState({search: text});
+    } else {
+      this.setState({dataMB: this.props.dataCM});
     }
-    else {
-      this.setState({dataMB:this.props.dataCM});
-    }
-  }
+  };
+
   render() {
-    // console.log('state===',this.state.imageAvt);
     return (
       <View style={{flex: 1}}>
         <Header
@@ -151,20 +197,38 @@ export default class CompanyMemberComponent extends Component {
         <ImageBackground
           source={Images.ic_bg_timecard}
           style={{height: screenHeight, width: screenWidth}}>
-            <View style={{  marginTop:5}}>
-              <TextInput
+          <View
+            style={{
+              marginTop: 5,
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginHorizontal:10
+            }}>
+            <TextInput
               // multiline
               // value={this.state.search}
-              onFocus={()=>{this.setState({backgroundColor:true})}}
-              onChangeText={(text)=>{this.textSearch(text)}}
-            style={{height: 40 ,borderWidth:1  , borderRadius:20 ,borderColor:'#BFBFBF' , width:screenWidth/2 }}
-            placeholder="Search..."></TextInput>
-            </View>
-          
-          <ScrollView nestedScrollEnabled  style={[{backgroundColor:this.state.backgroundColor ? '#00000036' : null} , {zIndex:10}]}>
-            <FlatList
-            style={[{backgroundColor:this.state.backgroundColor ? '#00000036' : null} , {zIndex:10}]}
+              
+              onFocus={() => {
+                this.setState({backgroundColor: true});
+              }}
+              onChangeText={text => {
+                this.textSearch(text);
+              }}
+              style={{
+                borderWidth: 1,
+                borderRadius: 20,
+                borderColor: '#BFBFBF',
+                width: screenWidth/2 ,
+                height: 40,
+              }}
+              placeholder="Search name...">
+               
+              </TextInput>
            
+          </View>
+
+          <ScrollView nestedScrollEnabled>
+            <FlatList
               data={this.state.dataMB}
               keyExtractor={(item, index) => String(index)}
               renderItem={this.renderItem}

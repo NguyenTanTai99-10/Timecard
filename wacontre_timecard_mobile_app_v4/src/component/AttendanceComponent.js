@@ -104,6 +104,9 @@ export default class AttendanceComponent extends Component {
           source={Images.ic_bg_timecard}
           style={{width: screenWidth, height: screenHeight}}>
           <View style={{marginHorizontal: 10, marginVertical: 20, flex: 1}}>
+            {/* {this.state.data.map((item)=>{
+              console.log(item.date);
+            })} */}
             <ImageBackground
               source={Images.ic_header_salary}
               style={{height: 50}}>
