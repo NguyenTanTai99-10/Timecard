@@ -16,6 +16,7 @@ import Header from './custom/Header';
 import {colors, fonts, screenWidth, screenHeight} from '../res/style/theme';
 import LoadingView from './custom/LoadingView';
 import DropDownPicker from 'react-native-dropdown-picker';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 export default class CompanyMemberComponent extends Component {
   constructor(props) {
@@ -87,22 +88,10 @@ export default class CompanyMemberComponent extends Component {
           temp.push(obj);
         });
         // console.log(temp);
-        const kqc = temp.filter((item, index) => {
-          console.log(
-            // a. Item
-            item,
-            // b. Index
-            index,
-            // c. indexOf
-            temp.indexOf(item),
-            // d. Condition
-            temp.indexOf(item) === index,
-          );
-
-          return temp.indexOf(item) === index;
-        });
+        var x = Array.from(new Set(temp.map(JSON.stringify))).map(JSON.parse);
+        // console.log("ket qua" ,x);
         this.setState({
-          data: temp,
+          data: x,
         });
 
         this.setState({dataMB: this.props.dataCM});
@@ -183,7 +172,22 @@ export default class CompanyMemberComponent extends Component {
       this.setState({dataMB: this.props.dataCM});
     }
   };
-
+  
+  itemSearch = text => {
+    console.log(text.length);
+    if (text.length >= 1) {
+      const newData = this.state.dataSearch.filter(item => {
+        // console.log(item);
+        const itemData = item.position ? item.position.toUpperCase() : ''.toUpperCase();
+        const textData = text.toUpperCase();
+        return itemData.indexOf(textData) > -1;
+      });
+      this.setState({dataMB: newData});
+      this.setState({search: text});
+    } else {
+      this.setState({dataMB: this.props.dataCM});
+    }
+  };
   render() {
     return (
       <View style={{flex: 1}}>
@@ -201,30 +205,61 @@ export default class CompanyMemberComponent extends Component {
             style={{
               marginTop: 5,
               flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginHorizontal:10
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginHorizontal: 10,
             }}>
-            <TextInput
-              // multiline
-              // value={this.state.search}
-              
-              onFocus={() => {
-                this.setState({backgroundColor: true});
-              }}
-              onChangeText={text => {
-                this.textSearch(text);
-              }}
+            <View
               style={{
+                flexDirection: 'row',
+                justifyContent: 'flex-start',
+                alignItems: 'center',
+                marginHorizontal: 10,
                 borderWidth: 1,
                 borderRadius: 20,
                 borderColor: '#BFBFBF',
-                width: screenWidth/2 ,
-                height: 40,
-              }}
-              placeholder="Search name...">
-               
-              </TextInput>
-           
+                flex:1
+              }}>
+              <Icon
+                name="search"
+                style={{color: '#BFBFBF', marginLeft: 10}}
+                size={20}
+              />
+              <TextInput
+              
+                // multiline
+                // value={this.state.search}
+
+                onFocus={() => {
+                  this.setState({backgroundColor: true});
+                }}
+                onChangeText={text => {
+                  this.textSearch(text);
+                }}
+                style={{
+                  
+                  height: 40,
+                }}
+                placeholder="Search name..."></TextInput>
+            </View>
+            {/* <View style={{flex:0.5}}>
+            <DropDownPicker
+            
+                  items={this.state.data}
+                  // defaultValue={this.state.country}
+                  placeholder="Chọn ngành nghề"
+                  containerStyle={{height: 40, width: (screenWidth * 0.8) / 2}}
+                  style={{backgroundColor: '#fafafa' , }}
+                  itemStyle={{
+                    justifyContent: 'flex-start',
+                  }}
+                  dropDownStyle={{backgroundColor: '#fafafa'}}
+                  onChangeItem={item =>
+                    this.itemSearch(item.value)
+                  }
+                />
+
+            </View> */}
           </View>
 
           <ScrollView nestedScrollEnabled>

@@ -38,8 +38,8 @@ const CompanyMemberReducer = (state = initState, action) => {
           status: null,
           loading: false,
           data: null,
-          error: action.data.error,
-          message : action.data.message
+          error: action.error,
+          message : action.error
         };
     default:
       return state;
